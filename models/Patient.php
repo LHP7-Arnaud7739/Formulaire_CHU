@@ -63,21 +63,20 @@ class Patients extends DataBase
 
         return $resultQuery->fetch();
     }
-
-    public function modifyPatient($id)
+    // this = réfere a l'objet actuel
+    public function modifyPatient($id, $lastname, $firstname, $mail, $phone, $birthdate)
     {
         $base = $this->connectDb();
-        $sql = "UPDATE `patients`SET lastname = :lastname, firstname= :firstname, birthdate = :birthdate, phone = :phone, mail = :mail WHERE id= :id";
+        $sql = "UPDATE `patients` SET lastname=:lastname, firstname=:firstname, birthdate=:birthdate, phone=:phone, mail=:mail
+        WHERE id=:id ;";
         $resultQuery = $base->prepare($sql);
-        $resultQuery->bindValue(':id', $id, PDO::PARAM_INT);
-        $resultQuery->bindValue(':lastname', $id, PDO::PARAM_INT);
-        $resultQuery->bindValue(':firstname', $id, PDO::PARAM_INT);
-        $resultQuery->bindValue(':birthdate', $id, PDO::PARAM_INT);
-        $resultQuery->bindValue(':phone', $id, PDO::PARAM_INT);
-        $resultQuery->bindValue(':mail', $id, PDO::PARAM_INT);
+        $resultQuery->bindValue(':lastname', $lastname, PDO::PARAM_STR);
+        $resultQuery->bindValue(':firstname', $firstname, PDO::PARAM_STR);
+        $resultQuery->bindValue(':birthdate', $birthdate, PDO::PARAM_STR);
+        $resultQuery->bindValue(':phone', $phone, PDO::PARAM_STR);
+        $resultQuery->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $resultQuery->bindValue(':id', $id, PDO::PARAM_STR);
 
         $resultQuery->execute();
-
-        
     }
 }

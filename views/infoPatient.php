@@ -25,9 +25,8 @@ require_once '../controllers/infoPatientController.php';
     <title>Informations Patients</title>
 </head>
 
-<body class="background text-white">
-
-    <nav class=" navbar navbar-light bg-light fixed-top">
+<body class="background">
+<nav class=" navbar navbar-light bg-light fixed-top">
         <div class="container-fluid">
             <a class="text-white btn btn-primary navbar-brand" href="home.php?results=home">Accueil</a>
             <a class="text-white btn btn-primary navbar-brand" href="addPatient.php?results=addPatient">Ajout d'un patient</a>
@@ -36,41 +35,77 @@ require_once '../controllers/infoPatientController.php';
         </div>
     </nav>
 
-    <h1 class="text-center pt-5 mt-5">Informations patients</h1>
+    <h1 class="text-center mt-5">Informations patients</h1>
 
-    <div class="text-white container col-6 mt-4">
+    <?php if ($modifyPatientOk == true) { ?>
+        <p class="text-center text-success">
+            La modification a été effectué avec succès.
+        </p>
+    <?php } ?>
+
+
+    <div class="container col-10 mt-4">
 
         <?php
         // Nous mettons en place une condition pour s'assurer que nous avons selectionné un patient avec le bouton +d'info
         if (isset($patientInfo)) { ?>
+            <form class="container col-5" action="" method="POST" novalidate>
+                <div class="mb-3">
+                    <label for="nom" class="form-label mt-3">Nom : </label><span class="text-danger">
+                        <?=
+                        $arrayError["nom"] ?? " ";
+                        ?>
+                    </span>
+                    <input value="<?= $patientInfo['lastname'] ?>" name="nom" type="text" class="form-control" id="nom" placeholder="Ex : Dupont..." <?= isset($_POST["modifyBtn"]) ? "" : 'disabled' ?>>
 
-            <div class="card text-dark">
-                <h3 class="text-center  card-header">Information patient </h3>
-                <div class="card-body">
-                <form action="modifyPatient.php" method="POST">   
-                    <div class="text-center">Nom</div>
-                    <div class="text-center p-3"> <input type="text" value="<?= $patientInfo['lastname'] ?>" disabled="disabled" /> 
-                    <div class="text-center">Prénom</div>
-                    <div class="text-center p-3"><input type="text" value="<?= $patientInfo['firstname'] ?>" disabled="disabled" /></div>
-                    <div class="text-center">Date de naissance</div>
-                    <div class="text-center p-3"><input type="text" value="<?= $patientInfo['birthdate'] ?>" disabled="disabled" /></div>
-                    <div class="text-center">Numéro de Tel</div>
-                    <div class="text-center p-3"><input type="text" value="<?= $patientInfo['phone'] ?>" disabled="disabled" /></div>
-                    <div class="text-center">E-Mail</div>
-                    <div class="text-center p-3"><input type="text" value="<?= $patientInfo['mail'] ?>" disabled="disabled" /></div>
-                                <button class="btn btn-primary btn-sm">Plus d'info</button>
-                    <a class=" text-white btn btn-danger " href="home.php?results=home">Retour</a>
+                    <label for="prenom" class="form-label mt-3">Prénom : </label><span class="text-danger">
+                        <?=
+                        $arrayError["prenom"] ?? "";
+                        ?>
+                    </span>
+                    <input value="<?= $patientInfo['firstname'] ?>" name=" prenom" type="text" class="form-control" id="prenom" placeholder="Ex : Jean..." <?= isset($_POST["modifyBtn"]) ? "" : 'disabled' ?>>
 
-                            </form>
-                            
+                    <label for="birthDate" class="form-label mt-3">Date de naissance : </label><span class="text-danger">
+                        <?=
+                        $arrayError["birthDate"] ?? "";
+                        ?>
+                    </span>
+                    <input value="<?= $patientInfo['birthdate'] ?>" name=" birthDate" type="date" class="form-control" id="birthDate" placeholder="24/12/2021" <?= isset($_POST["modifyBtn"]) ? "" : 'disabled' ?>>
+
+                    <label for="phone" class="form-label mt-3">N° de téléphone : </label><span class="text-danger">
+                        <?=
+                        $arrayError["phone"] ?? " ";
+                        ?>
+                    </span>
+                    <input value="<?= $patientInfo['phone'] ?>" name="phone" type="tel" class="form-control" id="phone" placeholder="061256XXXX" <?= isset($_POST["modifyBtn"]) ? "" : 'disabled' ?>>
+
+                    <label for="mail" class="form-label mt-3">Adresse mail : </label><span class="text-danger">
+                        <?=
+                        $arrayError["mail"] ?? " ";
+                        ?>
+                    </span>
+                    <input value="<?= $patientInfo['mail'] ?>" name="mail" type="email" class="form-control" id="mail" placeholder="Ex : hopital@gmail.com" <?= isset($_POST["modifyBtn"]) ? "" : 'disabled' ?>>
+
                 </div>
-            </div>
+
+                <div class="text-center mt-4">
+                    <input type="hidden" name="idPatient" value="<?= $patientInfo['id'] ?>">
+
+                    <?php if (!isset($_POST["modifyBtn"])) { ?>
+                        <button type="submit" name="modifyBtn" class="btn btn-primary">Modifier la fiche du patient</button>
+                    <?php } else { ?>
+                        <button type="submit" name="updateBtn" class="btn btn-success">Enregistrer les modifications</button>
+                    <?php   } ?>
+                </div>
+            </form>
 
         <?php   } else { ?>
-            <p class="text-center">Veuillez selectionner un patient s'il vous plait</p>
-            <a class="btn btn-secondary text-center" href="gestionPatient.php">Listes des patients</a>
+            <div class="text-center">
+                <p>Veuillez selectionner un patient s'il vous plait</p>
+                <a class="btn btn-secondary" href="gestionPatient.php">Listes des patients</a>
+            </div>
         <?php   } ?>
-       
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

@@ -25,8 +25,7 @@ require_once '../controllers/addPatientController.php';
     <title>formulaire</title>
 </head>
 
-<body class="background ">
-
+<body class="background">
 <nav class=" navbar navbar-light bg-light fixed-top">
         <div class="container-fluid">
             <a class="text-white btn btn-primary navbar-brand" href="home.php?results=home">Accueil</a>
@@ -36,16 +35,13 @@ require_once '../controllers/addPatientController.php';
         </div>
     </nav>
 
-
     <h1 class="text-center mt-4">Nouveau patient</h1>
 
     <div class="container col-6 mt-3 mb-5">
 
         <?php if ($addPatientOk) { ?>
-            <p class="text-center"><strong class="text-success p-4"> Le patient a bien été enregistré</strong></p>
-            <a  href="addPatient.php" class=" btn btn-primary justify-content-center">Ajouter un nouveau patient</a>
-            <a  href="home.php" class=" btn btn-danger justify-content-center">Accueil</a>
-
+            <p>Le patient a bien été enregistré</p>
+            <a href="addPatient.php" class="btn btn-primary">Ajouter un nouveau patient</a>
         <?php } else { ?>
 
 
