@@ -1,6 +1,6 @@
 <?php
 
-var_dump($_POST);
+
 
 require_once '../config.php';
 require_once '../models/DataBase.php';

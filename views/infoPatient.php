@@ -38,11 +38,15 @@ require_once '../controllers/infoPatientController.php';
     <h1 class="text-center mt-5">Informations patients</h1>
 
     <?php if ($modifyPatientOk == true) { ?>
-        <p class="text-center text-success">
+        <p class="text-center text-success"><strong>
             La modification a été effectué avec succès.
-        </p>
+            </strong></p>
     <?php } ?>
-
+    <?php if ($deletePatientOk == true) { ?>
+        <p class="text-center text-success"><strong>
+            La fiche patient a bien été supprimée
+            </strong> </p>
+    <?php } ?>
 
     <div class="container col-10 mt-4">
 
@@ -90,12 +94,17 @@ require_once '../controllers/infoPatientController.php';
 
                 <div class="text-center mt-4">
                     <input type="hidden" name="idPatient" value="<?= $patientInfo['id'] ?>">
-
+                   
+                   
                     <?php if (!isset($_POST["modifyBtn"])) { ?>
                         <button type="submit" name="modifyBtn" class="btn btn-primary">Modifier la fiche du patient</button>
-                    <?php } else { ?>
-                        <button type="submit" name="updateBtn" class="btn btn-success">Enregistrer les modifications</button>
+                    
+                        <?php } else { ?>
+                        <button type="submit" name="updateBtn" class=" btn btn-success">Enregistrer les modifications</button>
                     <?php   } ?>
+                 <div class="p-4"> <a class=" btn btn-primary" href="gestionPatient.php">Retour</a></div>  
+           
+                    
                 </div>
             </form>
 

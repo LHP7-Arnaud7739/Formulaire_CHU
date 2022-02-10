@@ -4,7 +4,7 @@ require_once '../config.php';
 require_once '../models/DataBase.php';
 require_once '../models/Patient.php';
 
-var_dump($_POST);
+
 
 $regexNom = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,30}$/";
 $regexPseudo = "/^[0123456789a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.'-]{2,30}$/";
@@ -15,7 +15,14 @@ $regexPhone = "/^(?:(?:\+|00)33[\s.-]{0,3}(?:(0)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-
 $arrayError = [];
 // creer une variable pour cacher ou montrer ton formulaire
 $modifyPatientOk = false;
+$deletePatientOk = false;
+if (isset($_POST["deleteBtn"])){
+    $id = htmlspecialchars(trim($_POST["deleteBtn"]));
+    $patientObj = new Patients();
+    $patientDelete = $patientObj->deletePatient($id);
 
+
+}
 if (isset($_POST["idPatient"])) {
     $id = htmlspecialchars(trim($_POST["idPatient"]));
     $patientObj = new Patients();
@@ -88,4 +95,7 @@ if (isset($_POST['updateBtn'])) {
         $patientObj = new Patients();
         $patientInfo = $patientObj->getOnePatient($id);
     }
+
+   
 }
+

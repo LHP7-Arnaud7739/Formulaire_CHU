@@ -20,22 +20,31 @@ require_once '../controllers/homeController.php';
 
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <title>PDO-Doctolib</title>
+    <title>CHU</title>
 </head>
 
-<body class="background">
-<nav class=" navbar navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="text-white btn btn-primary navbar-brand" href="home.php?results=home">Accueil</a>
-            <a class="text-white btn btn-primary navbar-brand" href="addPatient.php?results=addPatient">Ajout d'un patient</a>
-            <a class="text-white btn btn-primary navbar-brand" href="gestionPatient.php?results=gestionPatient">Gestion des patients</a>
+<body class="background text-center">
 
+    < <div class="d-flex justify-content-center pt-2">
+
+        <div class="card justify-content-center" style="width: 70rem;">
+            <h1 class="card-title">Bienvenue dans MANU'S ANATOMY</h1>
+
+            <img src="../assets/img/pexels-karolina-grabowska-4386478.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+
+                <p class="card-text">
+                    <a class="text-white btn btn-success navbar-brand" href="addPatient.php?results=addPatient">Ajout d'un patient</a>
+                    <a class="text-white btn btn-primary navbar-brand" href="gestionPatient.php?results=gestionPatient">Gestion des patients</a>
+                    <a class="text-white btn btn-success navbar-brand" href="gestionPatient.php?results=gestionPatient">Rendez-Vous</a>
+
+                </p>
+
+            </div>
         </div>
-    </nav>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
 
 </body>
 

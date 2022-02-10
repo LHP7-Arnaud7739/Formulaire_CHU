@@ -1,7 +1,7 @@
 <?php
 
 require_once '../controllers/gestionPatientController.php';
-
+require_once '../controllers/infoPatientController.php';
 
 ?>
 
@@ -25,24 +25,25 @@ require_once '../controllers/gestionPatientController.php';
     <title>Gestion Patients</title>
 </head>
 
-<body class="background ">
-    <nav class=" navbar navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="text-white btn btn-primary navbar-brand" href="home.php?results=home">Accueil</a>
-            <a class="text-white btn btn-primary navbar-brand" href="addPatient.php?results=addPatient">Ajout d'un patient</a>
-            <a class="text-white btn btn-primary navbar-brand" href="gestionPatient.php?results=gestionPatient">Gestion des patients</a>
+<body class="background">
+    <div class="row d-flex justify-content-center">
 
-        </div>
-    </nav>
+        <div class="col-3">
+            <a class="text-white btn btn-primary" href="home.php?results=home">Accueil</a>
+            <a class="text-white btn btn-primary" href="addPatient.php?results=addPatient">Ajout d'un patient</a>
+            <a class="text-white btn btn-primary" href="gestionPatient.php?results=gestionPatient">Gestion des patients</a>
+            <a class="text-white btn btn-primary" href="gestionPatient.php?results=gestionPatient">Rendez-Vous</a>
 
-    <h1 class="text-center mt-5 ">Listes des patients</h1>
-            <table class="table table-light">
+            </div>
+
+            <h1 class="text-center mt-5 ">Listes des patients</h1>
+            <table class="col-10  table table-light">
                 <thead>
                     <tr>
                         <th scope="col">Nom</th>
                         <th scope="col">Prénom</th>
                         <th scope="col">Informations patient</th>
-                        <th scope="col">Supprimer la fiche patient</th>
+                        <th scope="col">Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,8 +63,8 @@ require_once '../controllers/gestionPatientController.php';
                             </td>
                             <td>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Supprimer fiche
+                                <button type="button" class="btn btn-sm text-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <img src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/25/000000/external-delete-multimedia-kiranshastry-lineal-color-kiranshastry.png"/>
                                 </button>
 
                                 <!-- Modal -->
@@ -79,7 +80,12 @@ require_once '../controllers/gestionPatientController.php';
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Annuler</button>
-                                                <button type="button" class="btn btn-danger">Supprimer</button>
+                                                <form class="container col-6" action="" method="POST">
+
+                                                    <input type="hidden" name="deleteBtn" value="<?= $patient['id'] ?>">
+                                                    <button type="submit" action="" class="btn btn-danger">Supprimer la fiche</button>
+
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +95,7 @@ require_once '../controllers/gestionPatientController.php';
                     <?php } ?>
                 </tbody>
             </table>
-        </div>
+       
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
